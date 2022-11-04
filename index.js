@@ -4,18 +4,38 @@ import cors from 'cors'
 
 const app = express()
 app.use(cors())
+app.use(express.json())
 
-app.get('/tweets', (req, res) => {
-    const tweets = [
-        {
-            username: "bobesponja",
-                avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
-              tweet: "eu amo o hub"
-        }
-        
-    ]
-    res.send(tweets)
+const tweets = []
+
+const user = []
+
+app.get('/tweets', (req, res) => { 
+ 
+    res.send(tweets) 
+});
+
+app.post('/sign-up', (req, res) => {
+
+   const userLogin =  {
+        username: req.body.username,
+        avatar: req.body.avatar,
+    }
+   user.push(userLogin)
+   
+    res.send('Ok') 
 })
+
+app.post('/tweets', (req, res) => {
+    const url = user.find((obj) => obj.username === req.body.username)
+    const newTweet = {
+        username: req.body.username,
+        avatar: url.avatar,
+        tweet: req.body.tweet
+    }
+    tweets.push(newTweet)
+    res.send('OK') 
+});
 
 
 
