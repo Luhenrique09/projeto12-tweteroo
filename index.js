@@ -12,7 +12,7 @@ const user = []
 app.get('/tweets', (req, res) => { 
 
     res.send(tweets.slice(0,10)) 
-    
+
 });
 
 app.post('/sign-up', (req, res) => {
@@ -37,8 +37,6 @@ app.post('/tweets', (req, res) => {
     res.send('OK') 
 });
 
-
-
 app.listen(5000, () => {
     console.log('Server running in oprt: 5000')
-})
+});
